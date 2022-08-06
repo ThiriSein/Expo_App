@@ -12,14 +12,31 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { TextInput } from "react-native-gesture-handler";
-import DatePicker from "react-datepicker";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
 export default function DatePick() {
   const [startDate, setStartDate] = useState(new Date());
+  const [date, setDate] = useState(new Date());
+  console.log("Date is ", date);
   return (
-    <View>
-      <DatePicker
+    <View style={{flex: 1, marginRight: 55,}}>
+      
+       <DateTimePicker
+        testID="dateTimePicker"
+        value={date}
+        mode="datetime"
+        is24Hour={true}
+        onChange={(date) => {
+          console.log(date);
+          
+        }}
+      />
+    </View>
+  );
+  
+}
+
+{/*<DateTimePicker
         selected={startDate}
         onChange={(date) => {
           console.log(date);
@@ -30,7 +47,4 @@ export default function DatePick() {
         timeIntervals={15}
         timeCaption="time"
         dateFormat="MMMM d, yyyy h:mm aa"
-      />
-    </View>
-  );
-}
+      />*/}
